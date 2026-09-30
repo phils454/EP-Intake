@@ -36,7 +36,7 @@ st.markdown("---")
 with st.form("master_ep_intake", clear_on_submit=False):
     t_client, t_assets, t_health, t_fiduciaries, t_distrib, t_admin = st.tabs([
         "1. Client & Spouse", "2. Assets & Real Estate", "3. Health & Agents", 
-        "4. Guardians & Trustees", "5. Beneficiaries & Gifts", "6. Admin & General"
+        "4. Guardians & Trustees", "5. Beneficiaries & Gifts", "6. Admin & "
     ])
 
     with t_client:
@@ -364,7 +364,7 @@ with st.form("master_ep_intake", clear_on_submit=False):
                     'em': st.text_input("Email", key=f"ct{i}_em")
                 })
 
-        st.subheader("General Information")
+        st.subheader(" Information")
         g1, g2 = st.columns(2)
         ref_src = g1.text_input("Referral Source")
         
@@ -544,9 +544,12 @@ with st.form("master_ep_intake", clear_on_submit=False):
         ctx['char_cause'] = char_cause
 
         # General
-        ctx['ref_src'] = ref_src; ctx['sst_age'] = sst_age; ctx['cb_am1_y'] = cb(am1=="Yes"); ctx['cb_am1_n'] = cb(am1=="No")
-        ctx['cost_fee'] = cost_fee; ctx['rel_plan'] = rel_plan; ctx['cons_date'] = cons_date; ctx['sign_dc'] = sign_dc
-        ctx['trust_type'] = trust_type; ctx['cb_buy_y'] = cb(buy=="Yes"); ctx['cb_buy_n'] = cb(buy=="No")
+        ctx['ref_src'] = ref_src
+        
+        # Hidden Internal Fields (Leave blank for attorney to fill later)
+        ctx['sst_age'] = ""; ctx['cb_am1_y'] = cb(False); ctx['cb_am1_n'] = cb(False)
+        ctx['cost_fee'] = ""; ctx['rel_plan'] = ""; ctx['cons_date'] = ""; ctx['sign_dc'] = ""
+        ctx['trust_type'] = ""; ctx['cb_buy_y'] = cb(False); ctx['cb_buy_n'] = cb(False)
         ctx['cb_doc_t'] = cb(doc_t); ctx['cb_doc_w'] = cb(doc_w); ctx['cb_doc_a'] = cb(doc_a); ctx['cb_doc_p'] = cb(doc_p)
         ctx['cb_doc_n'] = cb(doc_n); ctx['cb_doc_ub'] = cb(doc_ub); ctx['cb_doc_nb'] = cb(doc_nb); ctx['cb_doc_h'] = cb(doc_h)
         ctx['cb_doc_hd'] = cb(doc_hd); ctx['cb_doc_nhd'] = cb(doc_nhd); ctx['cb_doc_tax'] = cb(doc_tax)
