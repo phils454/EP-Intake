@@ -8,7 +8,7 @@ from datetime import datetime
 # --- Configuration & Helpers ---
 SENDER_EMAIL = st.secrets["sender_email"]
 SENDER_PASSWORD = st.secrets["sender_password"]
-RECEIVER_EMAIL = "phil@barthattorneys.com"
+RECEIVER_EMAIL = "phil+intake@barthattorneys.com"
 
 def send_email_with_docx(docx_path, filename):
     msg = EmailMessage()
