@@ -17,14 +17,13 @@ def send_email_with_pdf(pdf_path, filename):
     msg['To'] = RECEIVER_EMAIL
     msg.set_content("A new client intake questionnaire has been completed. The generated PDF is attached.")
 
-    # Read the generated PDF
     with open(pdf_path, 'rb') as f:
         pdf_data = f.read()
         
     msg.add_attachment(pdf_data, maintype='application', subtype='pdf', filename=filename)
 
-    # Connect to Outlook's SMTP server
-    with smtplib.SMTP('smtp-mail.outlook.com', 587) as server:
+    # Connect to Gmail's SMTP server
+    with smtplib.SMTP('smtp.gmail.com', 587) as server:
         server.starttls()
         server.login(SENDER_EMAIL, SENDER_PASSWORD)
         server.send_message(msg)
@@ -43,17 +42,18 @@ st.title("BarthCalderon Estate Planning Questionnaire")
 
 with st.form("ep_intake_form"):
     client_name = st.text_input("Full Legal Name")
-    # Add your other form fields here using the extraction script keys
+    # Add additional intake fields here as needed
     
     submitted = st.form_submit_button("Submit Questionnaire")
     
     if submitted:
+        # Map inputs to your PDF's field keys
         form_data = {
             "REPLACE_WITH_NAME_KEY": client_name
         }
         
         input_template = "EP Q.pdf"
-        safe_client_name = client_name.replace(" ", "_")
+        safe_client_name = client_name.replace(" ", "_") if client_name else "Client"
         timestamp = datetime.now().strftime("%Y%m%d_%H%M")
         output_filename = f"{safe_client_name}_EP_Questionnaire_{timestamp}.pdf"
         
@@ -61,13 +61,13 @@ with st.form("ep_intake_form"):
         temp_path = f"/tmp/{output_filename}"
         
         try:
-            # 1. Generate the PDF
+            # 1. Generate the completed PDF
             fill_ep_questionnaire(input_template, temp_path, form_data)
             
-            # 2. Email the PDF
+            # 2. Email the PDF via Gmail SMTP
             send_email_with_pdf(temp_path, output_filename)
             
-            # 3. Clean up the temporary file
+            # 3. Remove the temporary file from the cloud server
             os.remove(temp_path)
             
             st.success("Success! Your questionnaire has been securely submitted to the attorney.")
