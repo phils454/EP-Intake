@@ -42,7 +42,7 @@ with st.form("master_ep_intake", clear_on_submit=False):
     with t_client:
         st.subheader("Client Information")
         c1, c2, c3 = st.columns(3)
-        c_id = c1.text_input("Client ID Name")
+        c_id = c1.text_input("Client name as it appears on your ID")
         c_dob = c2.text_input("Client DOB")
         c_pob = c3.text_input("Birth State/Country")
         
@@ -71,7 +71,7 @@ with st.form("master_ep_intake", clear_on_submit=False):
         st.markdown("---")
         st.subheader("Spouse Information")
         s1, s2, s3 = st.columns(3)
-        s_id = s1.text_input("Spouse ID Name")
+        s_id = s1.text_input("Spouse name as it appears on your ID")
         s_dob = s2.text_input("Spouse DOB")
         s_pob = s3.text_input("Spouse Birth State/Country")
         
@@ -211,7 +211,7 @@ with st.form("master_ep_intake", clear_on_submit=False):
         hc_spec_info = st.text_input("If you marked that a specialist needs to be consulted, please provide his/her name, phone, email, address:")
         
         c_bur = h1.radio("Client do you want to be:", ["Buried", "Cremated"], key="c_bur")
-        s_bur = h2.radio("Spous edo you want to be:", ["Buried", "Cremated"], key="s_bur")
+        s_bur = h2.radio("Spouse do you want to be:", ["Buried", "Cremated"], key="s_bur")
         
         hc_prepaid = st.text_input("If you have a prepaid funeral or dispostion, please provide the contract number, organization, and contact info:")
         hc_no_prepaid = st.text_input("If you do not have prepaid arrangements, how do you want your remains to be disposed of:")
