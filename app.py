@@ -62,7 +62,7 @@ with st.form("master_ep_intake", clear_on_submit=False):
         c_wid = c10.radio("Widowed/Divorced?", ["No", "Yes"], key="c_wid")
         c_63 = c11.radio("Over 63?", ["No", "Yes"], key="c_63")
         
-        c_former_spouses = st.text_input("Former Spouses & Dates (if applicable)")
+        c_former_spouses = st.text_input("Name of former spouses & date of divorce or death (if applicable)")
         
         c12, c13 = st.columns(2)
         c_income = c12.text_input("Approx. Income")
@@ -100,7 +100,7 @@ with st.form("master_ep_intake", clear_on_submit=False):
     with t_assets:
         st.subheader("Trust History")
         ta1, ta2 = st.columns(2)
-        prior_trust = ta1.radio("Prior Trust?", ["No", "Yes"])
+        prior_trust = ta1.radio("Do you already have a trust?", ["No", "Yes"])
         t_amend_num = ta2.text_input("Amendment/Restatement #")
         t_desired_name = st.text_input("Desired Name of Trust")
         t_reason = st.text_area("Why do you want a trust?")
@@ -108,8 +108,8 @@ with st.form("master_ep_intake", clear_on_submit=False):
         st.markdown("---")
         st.subheader("Financial Accounts")
         ta3, ta4 = st.columns(2)
-        li_rev = ta3.radio("Life insurance reviewed recently?", ["Yes", "No"])
-        inv_rev = ta4.radio("Investment overseer?", ["Yes", "No"])
+        li_rev = ta3.radio("Have you had your life insurance reviewed recently?", ["Yes", "No", "Not Applicable"])
+        inv_rev = ta4.radio("Do you want a reccomendation for a financial advisor to review your investments for free?", ["Yes", "No", "Not Applicable"])
         
         accounts = []
         for i in range(1, 15):
@@ -158,7 +158,7 @@ with st.form("master_ep_intake", clear_on_submit=False):
 
         st.markdown("---")
         st.subheader("Real Estate")
-        hs_decl = st.radio("Homestead declaration filed?", ["Yes", "No"])
+        hs_decl = st.radio("Do you have a homestead declaration filed for your primary home?", ["Yes", "No"])
         re_pri_addr = st.text_input("Primary Residence Address")
         re1, re2, re3, re4, re5 = st.columns(5)
         re_pri_val = re1.text_input("Value")
@@ -192,50 +192,50 @@ with st.form("master_ep_intake", clear_on_submit=False):
 
         st.markdown("---")
         st.subheader("Other Assets")
-        inh = st.radio("Will inherit?", ["Yes", "No"])
-        ip = st.radio("Own IP?", ["Yes", "No"])
+        inh = st.radio("Will you inherit any assets from anyone else in a trust?", ["Yes", "No"])
+        ip = st.radio("Do you own any intellectual property?", ["Yes", "No"])
         oth_assets = st.text_area("Other assets")
 
     with t_health:
         st.subheader("Health Directives")
         h1, h2 = st.columns(2)
-        c_pn = h1.radio("Client pain meds objection?", ["No", "Yes"], key="c_pn")
-        s_pn = h2.radio("Spouse pain meds objection?", ["No", "Yes"], key="s_pn")
-        c_res = h1.radio("Client resuscitate?", ["Yes", "No"], key="c_res")
-        s_res = h2.radio("Spouse resuscitate?", ["Yes", "No"], key="s_res")
-        c_d = h1.radio("Client prefer die at", ["Home", "Facility"], key="c_d")
-        s_d = h2.radio("Spouse prefer die at", ["Home", "Facility"], key="s_d")
-        c_sp = h1.radio("Client consult specialist?", ["Yes", "No"], key="c_sp")
-        s_sp = h2.radio("Spouse consult specialist?", ["Yes", "No"], key="s_sp")
+        c_pn = h1.radio("Client do you have any objection to pain meds?", ["No", "Yes"], key="c_pn")
+        s_pn = h2.radio("Spouse do you have any objection to pain meds?", ["No", "Yes"], key="s_pn")
+        c_res = h1.radio("Client if you are found unresponsive, do you want EMT's to try to resuscitate you?", ["Yes", "No"], key="c_res")
+        s_res = h2.radio("Spouse if you are found unresponsive, do you want EMT's to try to resuscitate you?", ["Yes", "No"], key="s_res")
+        c_d = h1.radio("Client where do you prefer to die?", ["Home", "Facility"], key="c_d")
+        s_d = h2.radio("Spouse where do you prefer to die?", ["Home", "Facility"], key="s_d")
+        c_sp = h1.radio("Client can any Dr. treat you in an emergency, or do they need to consult a specialist first?", ["Yes", "No"], key="c_sp")
+        s_sp = h2.radio("Spouse can any Dr. treat you in an emergency, or do they need to consult a specialist first?", ["Yes", "No"], key="s_sp")
         
-        hc_spec_info = st.text_input("Specialist Info")
+        hc_spec_info = st.text_input("If you marked that a specialist needs to be consulted, please provide his/her name, phone, email, address:")
         
-        c_bur = h1.radio("Client", ["Buried", "Cremated"], key="c_bur")
-        s_bur = h2.radio("Spouse", ["Buried", "Cremated"], key="s_bur")
+        c_bur = h1.radio("Client do you want to be:", ["Buried", "Cremated"], key="c_bur")
+        s_bur = h2.radio("Spous edo you want to be:", ["Buried", "Cremated"], key="s_bur")
         
-        hc_prepaid = st.text_input("Prepaid details")
-        hc_no_prepaid = st.text_input("If not prepaid, remains details")
+        hc_prepaid = st.text_input("If you have a prepaid funeral or dispostion, please provide the contract number, organization, and contact info:")
+        hc_no_prepaid = st.text_input("If you do not have prepaid arrangements, how do you want your remains to be disposed of:")
         
-        c_org = h1.radio("Client Organs", ["All", "None", "Certain"], key="c_org")
-        s_org = h2.radio("Spouse Organs", ["All", "None", "Certain"], key="s_org")
+        c_org = h1.radio("Client do you want to donaate organs?", ["All", "None", "Certain"], key="c_org")
+        s_org = h2.radio("Spouse do you want to donaate organs?", ["All", "None", "Certain"], key="s_org")
         
-        hc_organs_list = st.text_input("If certain, which ones?")
+        hc_organs_list = st.text_input("If you have any restrictions on organ donation, please provide details here:")
         
-        c_op = h1.radio("Client Purpose", ["Transplant", "Research", "Stem Cell/Cloning", "Education"], key="c_op")
-        s_op = h2.radio("Spouse Purpose", ["Transplant", "Research", "Stem Cell/Cloning", "Education"], key="s_op")
+        c_op = h1.radio("Client for what purpose", ["Transplant", "Research", "Stem Cell/Cloning", "Education"], key="c_op")
+        s_op = h2.radio("Spouse for what purpose", ["Transplant", "Research", "Stem Cell/Cloning", "Education"], key="s_op")
         
-        c_sui = h1.radio("Client assisted suicide?", ["Yes", "No"], key="c_sui")
-        s_sui = h2.radio("Spouse assisted suicide?", ["Yes", "No"], key="s_sui")
-        c_out = h1.radio("Client likes outdoors?", ["Yes", "No"], key="c_out")
-        s_out = h2.radio("Spouse likes outdoors?", ["Yes", "No"], key="s_out")
-        c_oth = h1.radio("Client likes others?", ["Yes", "No"], key="c_oth")
-        s_oth = h2.radio("Spouse likes others?", ["Yes", "No"], key="s_oth")
+        c_sui = h1.radio("Client if legal, are you open to assisted suicide?", ["Yes", "No"], key="c_sui")
+        s_sui = h2.radio("Spouse if legal, are you open to assisted suicide?", ["Yes", "No"], key="s_sui")
+        c_out = h1.radio("Client do you want to make sure you spend time outdoors?", ["Yes", "No"], key="c_out")
+        s_out = h2.radio("Spouse do you want to make sure you spend time outdoors?", ["Yes", "No"], key="s_out")
+        c_oth = h1.radio("Client do you want to make sure you have social interaction?", ["Yes", "No"], key="c_oth")
+        s_oth = h2.radio("Spouse do you want to make sure you have social interaction?", ["Yes", "No"], key="s_oth")
         
-        hc_allergies = st.text_input("Allergies")
+        hc_allergies = st.text_input("Are you allergic to medications or anything found in a Dr.'s office or hospital:")
         
-        st.write("Life Support Preferences")
-        ls_c = h1.radio("Client LS", ["No Support", "Prolong within limits", "Prolong if recover"], key="ls_c")
-        ls_s = h2.radio("Spouse LS", ["No Support", "Prolong within limits", "Prolong if recover"], key="ls_s")
+        st.write("")
+        ls_c = h1.radio("Client Life Support Choice", ["No Support", "Prolong within limits", "Prolong if recover"], key="ls_c")
+        ls_s = h2.radio("Spouse Life Support Choice", ["No Support", "Prolong within limits", "Prolong if recover"], key="ls_s")
 
         st.markdown("---")
         st.subheader("Healthcare Agents")
@@ -243,14 +243,14 @@ with st.form("master_ep_intake", clear_on_submit=False):
         c_hca2 = h1.text_input("Client HC Agent 2")
         c_hca3 = h1.text_input("Client HC Agent 3")
         c_hca4 = h1.text_input("Client HC Agent 4")
-        c_hca_act = h1.selectbox("Client Agents Act", ["Separate", "Jointly"])
+        c_hca_act = h1.selectbox("Client how do you want the above HC agents to act", ["Separate", "Jointly"])
         c_hca_jt = h1.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], key="chca_jt")
 
         s_hca1 = h2.text_input("Spouse HC Agent 1")
         s_hca2 = h2.text_input("Spouse HC Agent 2")
         s_hca3 = h2.text_input("Spouse HC Agent 3")
         s_hca4 = h2.text_input("Spouse HC Agent 4")
-        s_hca_act = h2.selectbox("Spouse Agents Act", ["Separate", "Jointly"])
+        s_hca_act = h2.selectbox("Spouse how do you want the above HC agents to act", ["Separate", "Jointly"])
         s_hca_jt = h2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], key="shca_jt")
         
         st.markdown("---")
@@ -259,18 +259,18 @@ with st.form("master_ep_intake", clear_on_submit=False):
         c_poa2 = h1.text_input("Client POA 2")
         c_poa3 = h1.text_input("Client POA 3")
         c_poa4 = h1.text_input("Client POA 4")
-        c_poa_act = h1.selectbox("Client POA Act", ["Separate", "Jointly"])
+        c_poa_act = h1.selectbox("Client how do you want the above POA agents to act", ["Separate", "Jointly"])
         c_poa_jt = h1.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], key="cpoa_jt")
-        c_poaw = h1.radio("Client Effect", ["Now", "Upon Incapacity"])
+        c_poaw = h1.radio("Client when do you want the power over your assets to take effect", ["Now", "Upon Incapacity"])
         c_poag = h1.radio("Client Gifts", ["Yes", "No"], key="c_poag")
 
         s_poa1 = h2.text_input("Spouse POA 1")
         s_poa2 = h2.text_input("Spouse POA 2")
         s_poa3 = h2.text_input("Spouse POA 3")
         s_poa4 = h2.text_input("Spouse POA 4")
-        s_poa_act = h2.selectbox("Spouse POA Act", ["Separate", "Jointly"])
+        s_poa_act = h2.selectbox("Spouse how do you want the above POA agents to act", ["Separate", "Jointly"])
         s_poa_jt = h2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], key="spoa_jt")
-        s_poaw = h2.radio("Spouse Effect", ["Now", "Upon Incapacity"])
+        s_poaw = h2.radio("Spouse when do you want the power over your assets to take effect", ["Now", "Upon Incapacity"])
         s_poag = h2.radio("Spouse Gifts", ["Yes", "No"], key="s_poag")
 
     with t_fiduciaries:
@@ -295,9 +295,9 @@ with st.form("master_ep_intake", clear_on_submit=False):
         tst2 = st.text_input("Trustee 2")
         tst3 = st.text_input("Trustee 3")
         tst4 = st.text_input("Trustee 4")
-        tst_act = st.selectbox("Trustee Act", ["Separate", "Jointly"])
+        tst_act = st.selectbox("How should the above trustees act?", ["Separate", "Jointly"])
         tst_jt = st.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], key="tstjt")
-        tst_comp = st.text_input("Compensation Structure")
+        tst_comp = st.text_input("Do you want the trustee to be compensated; and if so, how (hourly, percentage, fixed amount, reasonable, etc.)?")
 
     with t_distrib:
         st.subheader("Beneficiaries")
@@ -329,18 +329,18 @@ with st.form("master_ep_intake", clear_on_submit=False):
                 gifts.append({'desc':desc, 'nm':nm, 'death':death, 'dist':dist, 'unable':unable, 'els':els})
 
         st.subheader("Disinheritance")
-        cd_fail = st.radio("Client Failure Provision", ["Family", "Charity"], key="cd_fail")
-        sd_fail = st.radio("Spouse Failure Provision", ["Family", "Charity"], key="sd_fail")
+        cd_fail = st.radio("Client if everyone listed dies, rather than the assets going to the state, would you rather the assets go to heirs, charity, or both:", ["Family", "Charity"], key="cd_fail")
+        sd_fail = st.radio("Spouse if everyone listed dies, rather than the assets going to the state, would you rather the assets go to heirs, charity, or both:", ["Family", "Charity"], key="sd_fail")
         
         disinh = []
         for i in range(1, 5):
             d1, d2, d3 = st.columns(3)
             disinh.append({
-                'nm': d1.text_input(f"Disinherit {i} Name", key=f"dis{i}_nm"),
+                'nm': d1.text_input(f"Person to Disinherit {i} Name", key=f"dis{i}_nm"),
                 'rel': d2.text_input(f"Relation", key=f"dis{i}_rel"),
                 'rsn': d3.text_input(f"Reason", key=f"dis{i}_rsn")
             })
-        char_cause = st.text_input("Charity Cause")
+        char_cause = st.text_input("")
 
     with t_admin:
         st.subheader("Contacts (Master List)")
@@ -361,14 +361,6 @@ with st.form("master_ep_intake", clear_on_submit=False):
         st.subheader("General Information")
         g1, g2 = st.columns(2)
         ref_src = g1.text_input("Referral Source")
-        sst_age = g2.text_input("SST Age")
-        am1 = g1.radio("Power to Amend after 1st Death", ["Yes", "No"])
-        cost_fee = g2.text_input("Cost")
-        rel_plan = g1.text_input("Religion Planning")
-        cons_date = g2.text_input("Consultation Date")
-        sign_dc = g1.text_input("Signing Date/City")
-        trust_type = g2.text_input("Trust Type")
-        buy = st.radio("Beneficiaries buy out?", ["Yes", "No"])
         
         st.write("Documents / Services")
         doc_t = st.checkbox("Trust")
@@ -418,8 +410,8 @@ with st.form("master_ep_intake", clear_on_submit=False):
         # Trust Info
         ctx['cb_prior_trust_y'] = cb(prior_trust == "Yes"); ctx['cb_prior_trust_n'] = cb(prior_trust == "No")
         ctx['t_amend_num'] = t_amend_num; ctx['t_desired_name'] = t_desired_name; ctx['t_reason'] = t_reason
-        ctx['cb_li_rev_y'] = cb(li_rev == "Yes"); ctx['cb_li_rev_n'] = cb(li_rev == "No")
-        ctx['cb_inv_rev_y'] = cb(inv_rev == "Yes"); ctx['cb_inv_rev_n'] = cb(inv_rev == "No")
+        ctx['cb_li_rev_y'] = cb(li_rev == "Yes"); ctx['cb_li_rev_n'] = cb(li_rev in ["No", "Not Applicable"])
+        ctx['cb_inv_rev_y'] = cb(inv_rev == "Yes"); ctx['cb_inv_rev_n'] = cb(inv_rev in ["No", "Not Applicable"])
 
         # Accounts
         for i, a in enumerate(accounts, 1):
@@ -556,7 +548,7 @@ with st.form("master_ep_intake", clear_on_submit=False):
         ctx['other_notes'] = other_notes
 
         # File Processing
-        input_template = "EP Q - Rev 7-17-26.docx"
+        input_template = "EP Q (with Fields) - Rev 7-17-26.docx"
         safe_name = c_id.replace(" ", "_") if c_id else "Client"
         timestamp = datetime.now().strftime("%Y%m%d_%H%M")
         output_filename = f"{safe_name}_EP_Questionnaire_{timestamp}.docx"
