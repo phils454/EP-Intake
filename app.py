@@ -335,8 +335,8 @@ with st.form("master_ep_intake", clear_on_submit=False):
                 gifts.append({'desc':desc, 'nm':nm, 'death':death, 'dist':dist, 'unable':unable, 'els':els})
 
         st.subheader("Disinheritance")
-        cd_fail = st.radio("Client if everyone listed dies, rather than the assets going to the state, would you rather the assets go to heirs, charity, or both:", ["Family", "Charity"], key="cd_fail")
-        sd_fail = st.radio("Spouse if everyone listed dies, rather than the assets going to the state, would you rather the assets go to heirs, charity, or both:", ["Family", "Charity"], key="sd_fail")
+        cd_fail = st.multiselect("Client if everyone listed dies, rather than the assets going to the state, would you rather the assets go to heirs, charity, or both:", ["Family", "Charity"], key="cd_fail")
+        sd_fail = st.multiselect("Spouse if everyone listed dies, rather than the assets going to the state, would you rather the assets go to heirs, charity, or both:", ["Family", "Charity"], key="sd_fail")
         
         disinh = []
         for i in range(1, 5):
@@ -537,8 +537,8 @@ with st.form("master_ep_intake", clear_on_submit=False):
             ctx[f'sg{i}_else'] = g['els']
 
         # Disinheritance
-        ctx['cb_cd_fam'] = cb(cd_fail=="Family"); ctx['cb_cd_char'] = cb(cd_fail=="Charity")
-        ctx['cb_sd_fam'] = cb(sd_fail=="Family"); ctx['cb_sd_char'] = cb(sd_fail=="Charity")
+        ctx['cb_cd_fam'] = cb("Family" in cd_fail); ctx['cb_cd_char'] = cb("Charity" in cd_fail)
+        ctx['cb_sd_fam'] = cb("Family" in sd_fail); ctx['cb_sd_char'] = cb("Charity" in sd_fail)
         for i, d in enumerate(disinh, 1):
             ctx[f'dis{i}_nm'] = d['nm']; ctx[f'dis{i}_rel'] = d['rel']; ctx[f'dis{i}_rsn'] = d['rsn']
         ctx['char_cause'] = char_cause
