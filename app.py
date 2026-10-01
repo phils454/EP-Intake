@@ -298,7 +298,8 @@ with t_health:
     s_poa_jt = poa2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], key="spoa_jt")
     s_poaw = poa2.radio("Spouse when do you want the power over your assets to take effect", ["Now", "Upon Incapacity"], key="s_poaw")
     s_poag = poa2.radio("Spouse Gifts", ["Yes", "No"], key="s_poag")
-    with t_fiduciaries:
+    
+with t_fiduciaries:
     st.warning(warning_msg)
     st.subheader("Guardians of the Person")
     gop1 = st.text_input("GOP 1", key="gop1")
