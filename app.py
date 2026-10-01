@@ -11,7 +11,7 @@ SENDER_EMAIL = st.secrets["sender_email"]
 SENDER_PASSWORD = st.secrets["sender_password"]
 
 # 1. Update this list with as many email addresses as you need, wrapped in quotes and separated by commas
-RECEIVER_EMAILS = ["shekerlianlaw@gmail.com", "another.email@domain.com", "assistant@domain.com"]
+RECEIVER_EMAILS = ["edwin@barthattorneys.com", "anu@barthattorneys.com"]
 
 def send_email_with_docx(docx_path, filename):
     msg = EmailMessage()
