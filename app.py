@@ -237,7 +237,7 @@ with t_health:
     hc_prepaid = st.text_input("If you have a prepaid funeral or dispostion, please provide the contract number, organization, and contact info:", key="hc_prepaid")
     hc_no_prepaid = st.text_input("If you do not have prepaid arrangements, how do you want your remains to be disposed of:", key="hc_no_prepaid")
     
-h5, h6 = st.columns(2)
+    h5, h6 = st.columns(2)
     c_org = h5.radio("Client do you want to donaate organs?", ["All", "None", "Certain"], key="c_org")
     s_org = h6.radio("Spouse do you want to donaate organs?", ["All", "None", "Certain"], key="s_org")
     
