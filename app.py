@@ -259,8 +259,8 @@ with t_health:
     
     st.write("")
     h9, h10 = st.columns(2)
-    ls_c = h9.radio("Client Life Support Choice", ["No Support", "Prolong within limits", "Prolong if recover"], key="ls_c")
-    ls_s = h10.radio("Spouse Life Support Choice", ["No Support", "Prolong within limits", "Prolong if recover"], key="ls_s")
+    ls_c = h9.radio("Client Life Support Choice", ["No life support for any reason", "Life support for as long as legally possible", "Life support only if it results in relatively full recovery in a reasonably short time"], key="ls_c")
+    ls_s = h10.radio("Spouse Life Support Choice", ["No life support for any reason", "Life support for as long as legally possible", "Life support only if it results in relatively full recovery in a reasonably short time"], key="ls_s")
 
     st.markdown("---")
     st.subheader("Healthcare Agents")
