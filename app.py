@@ -241,11 +241,11 @@ with t_health:
     c_org = h5.radio("Client do you want to donaate organs?", ["All", "None", "Certain"], key="c_org")
     s_org = h6.radio("Spouse do you want to donaate organs?", ["All", "None", "Certain"], key="s_org")
     
-    hc_organs_list = st.text_input("If you have any restrictions on organ donation, please provide details here:", key="hc_organs_list")
-    
     h7, h8 = st.columns(2)
     c_op = h7.radio("Client for what purpose", ["Transplant", "Research", "Stem Cell/Cloning", "Education"], key="c_op")
     s_op = h8.radio("Spouse for what purpose", ["Transplant", "Research", "Stem Cell/Cloning", "Education"], key="s_op")
+
+    hc_organs_list = st.text_input("If you have any restrictions on organ donation, please provide details here:", key="hc_organs_list")
     
     c_sui = h7.radio("Client if legal, are you open to assisted suicide?", ["Yes", "No"], key="c_sui")
     s_sui = h8.radio("Spouse if legal, are you open to assisted suicide?", ["Yes", "No"], key="s_sui")
