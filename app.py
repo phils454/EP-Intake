@@ -237,22 +237,23 @@ with t_health:
     hc_prepaid = st.text_input("If you have a prepaid funeral or dispostion, please provide the contract number, organization, and contact info:", key="hc_prepaid")
     hc_no_prepaid = st.text_input("If you do not have prepaid arrangements, how do you want your remains to be disposed of:", key="hc_no_prepaid")
     
-    h5, h6 = st.columns(2)
+h5, h6 = st.columns(2)
     c_org = h5.radio("Client do you want to donaate organs?", ["All", "None", "Certain"], key="c_org")
     s_org = h6.radio("Spouse do you want to donaate organs?", ["All", "None", "Certain"], key="s_org")
     
     h7, h8 = st.columns(2)
     c_op = h7.radio("Client for what purpose", ["Transplant", "Research", "Stem Cell/Cloning", "Education"], key="c_op")
     s_op = h8.radio("Spouse for what purpose", ["Transplant", "Research", "Stem Cell/Cloning", "Education"], key="s_op")
-
+    
     hc_organs_list = st.text_input("If you have any restrictions on organ donation, please provide details here:", key="hc_organs_list")
     
-    c_sui = h7.radio("Client if legal, are you open to assisted suicide?", ["Yes", "No"], key="c_sui")
-    s_sui = h8.radio("Spouse if legal, are you open to assisted suicide?", ["Yes", "No"], key="s_sui")
-    c_out = h7.radio("Client do you want to make sure you spend time outdoors?", ["Yes", "No"], key="c_out")
-    s_out = h8.radio("Spouse do you want to make sure you spend time outdoors?", ["Yes", "No"], key="s_out")
-    c_oth = h7.radio("Client do you want to make sure you have social interaction?", ["Yes", "No"], key="c_oth")
-    s_oth = h8.radio("Spouse do you want to make sure you have social interaction?", ["Yes", "No"], key="s_oth")
+    h7a, h8a = st.columns(2)
+    c_sui = h7a.radio("Client if legal, are you open to assisted suicide?", ["Yes", "No"], key="c_sui")
+    s_sui = h8a.radio("Spouse if legal, are you open to assisted suicide?", ["Yes", "No"], key="s_sui")
+    c_out = h7a.radio("Client do you want to make sure you spend time outdoors?", ["Yes", "No"], key="c_out")
+    s_out = h8a.radio("Spouse do you want to make sure you spend time outdoors?", ["Yes", "No"], key="s_out")
+    c_oth = h7a.radio("Client do you want to make sure you have social interaction?", ["Yes", "No"], key="c_oth")
+    s_oth = h8a.radio("Spouse do you want to make sure you have social interaction?", ["Yes", "No"], key="s_oth")
     
     hc_allergies = st.text_input("Are you allergic to medications or anything found in a Dr.'s office or hospital:", key="hc_allergies")
     
