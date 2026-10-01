@@ -9,13 +9,17 @@ import json
 # --- Configuration & Helpers ---
 SENDER_EMAIL = st.secrets["sender_email"]
 SENDER_PASSWORD = st.secrets["sender_password"]
-RECEIVER_EMAIL = "shekerlianlaw@gmail.com""phil@barthattorneys.com"
+
+# 1. Update this list with as many email addresses as you need, wrapped in quotes and separated by commas
+RECEIVER_EMAILS = ["shekerlianlaw@gmail.com", "another.email@domain.com", "assistant@domain.com"]
 
 def send_email_with_docx(docx_path, filename):
     msg = EmailMessage()
     msg['Subject'] = f"New EP Intake: {filename}"
     msg['From'] = SENDER_EMAIL
-    msg['To'] = RECEIVER_EMAIL
+    
+    # 2. This line joins the emails together properly for the mail server
+    msg['To'] = ", ".join(RECEIVER_EMAILS)
     msg.set_content("A new client intake questionnaire has been completed. The generated Word document is attached.")
 
     with open(docx_path, 'rb') as f:
