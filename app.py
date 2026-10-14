@@ -271,13 +271,13 @@ with t_health:
     st.session_state["c_hc_agents_data"] = st.data_editor(st.session_state["c_hc_agents_data"], num_rows="dynamic", use_container_width=True, key="chc_editor")
     c_h1, c_h2 = st.columns(2)
     st.session_state['c_hca_act'] = c_h1.selectbox("Client how do you want the above HC agents to act", ["Separate", "Jointly"], index=["Separate", "Jointly"].index(st.session_state['c_hca_act']))
-    st.session_state['chca_jt'] = c_h2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['chca_jt']), key="chcajt")
+    st.session_state['chca_jt'] = c_h2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['chca_jt']), key="chca_jt")
 
     st.write("Spouse HC Agents")
     st.session_state["s_hc_agents_data"] = st.data_editor(st.session_state["s_hc_agents_data"], num_rows="dynamic", use_container_width=True, key="shc_editor")
     s_h1, s_h2 = st.columns(2)
     st.session_state['s_hca_act'] = s_h1.selectbox("Spouse how do you want the above HC agents to act", ["Separate", "Jointly"], index=["Separate", "Jointly"].index(st.session_state['s_hca_act']))
-    st.session_state['shca_jt'] = s_h2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['shca_jt']), key="shcajt")
+    st.session_state['shca_jt'] = s_h2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['shca_jt']), key="shca_jt")
     
     st.markdown("---")
     st.subheader("Financial POA Agents")
@@ -285,7 +285,7 @@ with t_health:
     st.session_state["c_poa_agents_data"] = st.data_editor(st.session_state["c_poa_agents_data"], num_rows="dynamic", use_container_width=True, key="cpoa_editor")
     c_p1, c_p2, c_p3 = st.columns(3)
     st.session_state['c_poa_act'] = c_p1.selectbox("Client how do you want the above POA agents to act", ["Separate", "Jointly"], index=["Separate", "Jointly"].index(st.session_state['c_poa_act']))
-    st.session_state['cpoa_jt'] = c_p2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['cpoa_jt']), key="cpoajt")
+    st.session_state['cpoa_jt'] = c_p2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['cpoa_jt']), key="cpoa_jt")
     st.session_state['c_poaw'] = c_p3.radio("Client when do you want the power to take effect", ["Now", "Upon Incapacity"], index=["Now", "Upon Incapacity"].index(st.session_state['c_poaw']))
     st.session_state['c_poag'] = st.radio("Client Gifts", ["Yes", "No"], index=["Yes", "No"].index(st.session_state['c_poag']))
 
@@ -293,7 +293,7 @@ with t_health:
     st.session_state["s_poa_agents_data"] = st.data_editor(st.session_state["s_poa_agents_data"], num_rows="dynamic", use_container_width=True, key="spoa_editor")
     s_p1, s_p2, s_p3 = st.columns(3)
     st.session_state['s_poa_act'] = s_p1.selectbox("Spouse how do you want the above POA agents to act", ["Separate", "Jointly"], index=["Separate", "Jointly"].index(st.session_state['s_poa_act']))
-    st.session_state['spoa_jt'] = s_p2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['spoa_jt']), key="spoajt")
+    st.session_state['spoa_jt'] = s_p2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['spoa_jt']), key="spoa_jt")
     st.session_state['s_poaw'] = s_p3.radio("Spouse when do you want the power to take effect", ["Now", "Upon Incapacity"], index=["Now", "Upon Incapacity"].index(st.session_state['s_poaw']))
     st.session_state['s_poag'] = st.radio("Spouse Gifts", ["Yes", "No"], index=["Yes", "No"].index(st.session_state['s_poag']))
     
@@ -302,19 +302,19 @@ with t_fiduciaries:
     st.session_state["gop_data"] = st.data_editor(st.session_state["gop_data"], num_rows="dynamic", use_container_width=True, key="gop_editor")
     gop_1, gop_2 = st.columns(2)
     st.session_state['gop_act'] = gop_1.selectbox("GOP Act", ["Separate", "Jointly"], index=["Separate", "Jointly"].index(st.session_state['gop_act']))
-    st.session_state['gopjt'] = gop_2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['gopjt']), key="gopjt_val")
+    st.session_state['gopjt'] = gop_2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['gopjt']), key="gopjt")
 
     st.subheader("Guardians of the Estate")
     st.session_state["goe_data"] = st.data_editor(st.session_state["goe_data"], num_rows="dynamic", use_container_width=True, key="goe_editor")
     goe_1, goe_2 = st.columns(2)
     st.session_state['goe_act'] = goe_1.selectbox("GOE Act", ["Separate", "Jointly"], index=["Separate", "Jointly"].index(st.session_state['goe_act']))
-    st.session_state['goejt'] = goe_2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['goejt']), key="goejt_val")
+    st.session_state['goejt'] = goe_2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['goejt']), key="goejt")
 
     st.subheader("Trustees")
     st.session_state["trustees_data"] = st.data_editor(st.session_state["trustees_data"], num_rows="dynamic", use_container_width=True, key="tst_editor")
     tst_1, tst_2 = st.columns(2)
     st.session_state['tst_act'] = tst_1.selectbox("How should the above trustees act?", ["Separate", "Jointly"], index=["Separate", "Jointly"].index(st.session_state['tst_act']))
-    st.session_state['tstjt'] = tst_2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['tstjt']), key="tstjt_val")
+    st.session_state['tstjt'] = tst_2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['tstjt']), key="tstjt")
     st.session_state['tst_comp'] = st.text_input("Do you want the trustee to be compensated; and if so, how?", value=st.session_state['tst_comp'])
 
 with t_distrib:
@@ -417,6 +417,28 @@ with t_admin:
             ctx['cb_ls1_c'] = cb(st.session_state['ls_c'] == "No life support for any reason"); ctx['cb_ls2_c'] = cb(st.session_state['ls_c'] == "Life support for as long as legally possible"); ctx['cb_ls3_c'] = cb(st.session_state['ls_c'] == "Life support only if it results in relatively full recovery in a reasonably short time")
             ctx['cb_ls1_s'] = cb(st.session_state['ls_s'] == "No life support for any reason"); ctx['cb_ls2_s'] = cb(st.session_state['ls_s'] == "Life support for as long as legally possible"); ctx['cb_ls3_s'] = cb(st.session_state['ls_s'] == "Life support only if it results in relatively full recovery in a reasonably short time")
             
+            # Fiduciary Checkboxes
+            ctx['cb_c_hca_sep'] = cb(st.session_state['c_hca_act'] == "Separate"); ctx['cb_c_hca_jt'] = cb(st.session_state['c_hca_act'] == "Jointly")
+            ctx['cb_c_hca_maj'] = cb(st.session_state['chca_jt'] == "Majority"); ctx['cb_c_hca_ind'] = cb(st.session_state['chca_jt'] == "Individual"); ctx['cb_c_hca_un'] = cb(st.session_state['chca_jt'] == "Unanimous")
+            
+            ctx['cb_s_hca_sep'] = cb(st.session_state['s_hca_act'] == "Separate"); ctx['cb_s_hca_jt'] = cb(st.session_state['s_hca_act'] == "Jointly")
+            ctx['cb_s_hca_maj'] = cb(st.session_state['shca_jt'] == "Majority"); ctx['cb_s_hca_ind'] = cb(st.session_state['shca_jt'] == "Individual"); ctx['cb_s_hca_un'] = cb(st.session_state['shca_jt'] == "Unanimous")
+
+            ctx['cb_c_poa_sep'] = cb(st.session_state['c_poa_act'] == "Separate"); ctx['cb_c_poa_jt'] = cb(st.session_state['c_poa_act'] == "Jointly")
+            ctx['cb_c_poa_maj'] = cb(st.session_state['cpoa_jt'] == "Majority"); ctx['cb_c_poa_ind'] = cb(st.session_state['cpoa_jt'] == "Individual"); ctx['cb_c_poa_un'] = cb(st.session_state['cpoa_jt'] == "Unanimous")
+
+            ctx['cb_s_poa_sep'] = cb(st.session_state['s_poa_act'] == "Separate"); ctx['cb_s_poa_jt'] = cb(st.session_state['s_poa_act'] == "Jointly")
+            ctx['cb_s_poa_maj'] = cb(st.session_state['spoa_jt'] == "Majority"); ctx['cb_s_poa_ind'] = cb(st.session_state['spoa_jt'] == "Individual"); ctx['cb_s_poa_un'] = cb(st.session_state['spoa_jt'] == "Unanimous")
+
+            ctx['cb_gop_sep'] = cb(st.session_state['gop_act'] == "Separate"); ctx['cb_gop_jt'] = cb(st.session_state['gop_act'] == "Jointly")
+            ctx['cb_gop_maj'] = cb(st.session_state['gopjt'] == "Majority"); ctx['cb_gop_ind'] = cb(st.session_state['gopjt'] == "Individual"); ctx['cb_gop_un'] = cb(st.session_state['gopjt'] == "Unanimous")
+
+            ctx['cb_goe_sep'] = cb(st.session_state['goe_act'] == "Separate"); ctx['cb_goe_jt'] = cb(st.session_state['goe_act'] == "Jointly")
+            ctx['cb_goe_maj'] = cb(st.session_state['goejt'] == "Majority"); ctx['cb_goe_ind'] = cb(st.session_state['goejt'] == "Individual"); ctx['cb_goe_un'] = cb(st.session_state['goejt'] == "Unanimous")
+
+            ctx['cb_tst_sep'] = cb(st.session_state['tst_act'] == "Separate"); ctx['cb_tst_jt'] = cb(st.session_state['tst_act'] == "Jointly")
+            ctx['cb_tst_maj'] = cb(st.session_state['tstjt'] == "Majority"); ctx['cb_tst_ind'] = cb(st.session_state['tstjt'] == "Individual"); ctx['cb_tst_un'] = cb(st.session_state['tstjt'] == "Unanimous")
+
             ctx['cb_c_poaw_n'] = cb(st.session_state['c_poaw'] == "Now"); ctx['cb_c_poaw_i'] = cb(st.session_state['c_poaw'] == "Upon Incapacity")
             ctx['cb_c_poag_y'] = cb(st.session_state['c_poag'] == "Yes"); ctx['cb_c_poag_n'] = cb(st.session_state['c_poag'] == "No")
             ctx['cb_s_poaw_n'] = cb(st.session_state['s_poaw'] == "Now"); ctx['cb_s_poaw_i'] = cb(st.session_state['s_poaw'] == "Upon Incapacity")
@@ -492,8 +514,6 @@ with t_admin:
             except Exception as e:
                 st.error(f"Error compiling document: {e}")
 ```
-
-And here is the complete content to copy and paste into your `EP Q (with Fields) - Rev 7-17-26.docx` file. **Make sure to highlight and bold (Ctrl+B) everything between the `**` marks in Microsoft Word!**
 
 ```text:EP Questionnaire Text:ep_q_dynamic.txt
 estate planning Questionnaire
