@@ -566,7 +566,7 @@ Do you own any intellectual property (Patents, Trademarks, Copyrights, etc.)? {{
 Please list any additional assets here: **{{ oth_assets }}**
 
 Contact Information (H = Husband, W = Wife, S/B = Client only or Both H & W)
-Please list the following for anyone who may be named in your documents as an agent or potential beneficiary of your estate (other than yourselves):
+Please list all of the following information for everyone you have named in this form (other than yourselves):
 {% for contact in contacts %}
 Full Legal Name: **{{ contact['Name'] }}**; Date of Birth: **{{ contact['DOB'] }}**; Relationship to you: **{{ contact['Relation'] }}** 
 Related to: **{{ contact['Related to (S/B/H/W)'] }}**; Mailing Address: **{{ contact['Address'] }}** 
