@@ -603,26 +603,26 @@ Client’s Agents Who Can Make Healthcare Decisions:
 {% for agent in c_hc_agents %}
 Agent #{{ loop.index }} Full Name: **{{ agent['Name'] }}** 
 {% endfor %}
-How to Act: {{ cb_c_hca_sep }} Separate {{ cb_c_hca_jt }} Jointly; If jointly, then by: {{ cb_c_hca_maj }} Majority {{ cb_c_hca_ind }} Individual {{ cb_c_hca_un }} Unanimous
+If you listed multiple agents, how should they act: {{ cb_c_hca_sep }} Separate {{ cb_c_hca_jt }} Jointly; If jointly, then by: {{ cb_c_hca_maj }} Majority {{ cb_c_hca_ind }} Individual {{ cb_c_hca_un }} Unanimous
 
 Spouse’s Agents Who Can Make Healthcare Decisions:
 {% for agent in s_hc_agents %}
 Agent #{{ loop.index }} Full Name: **{{ agent['Name'] }}** 
 {% endfor %}
-How to Act: {{ cb_s_hca_sep }} Separate {{ cb_s_hca_jt }} Jointly; If jointly, then by: {{ cb_s_hca_maj }} Majority {{ cb_s_hca_ind }} Individual {{ cb_s_hca_un }} Unanimous
+If you listed multiple agents, how should they act: {{ cb_s_hca_sep }} Separate {{ cb_s_hca_jt }} Jointly; If jointly, then by: {{ cb_s_hca_maj }} Majority {{ cb_s_hca_ind }} Individual {{ cb_s_hca_un }} Unanimous
 
 Financial Power of Attorney Agents
 Client’s Agents Who Can Have Power Over Your Assets When You Are Incapacitated:
 {% for agent in c_poa_agents %}
 Agent #{{ loop.index }} Full Name: **{{ agent['Name'] }}** 
 {% endfor %}
-How to Act: {{ cb_c_poa_sep }} Separate {{ cb_c_poa_jt }} Jointly; If jointly, then by: {{ cb_c_poa_maj }} Majority {{ cb_c_poa_ind }} Individual {{ cb_c_poa_un }} Unanimous
+If you listed multiple agents, how should they act: {{ cb_c_poa_sep }} Separate {{ cb_c_poa_jt }} Jointly; If jointly, then by: {{ cb_c_poa_maj }} Majority {{ cb_c_poa_ind }} Individual {{ cb_c_poa_un }} Unanimous
 
 Spouse’s Agents Who Can Have Power Over Your Assets When You Are Incapacitated:
 {% for agent in s_poa_agents %}
 Agent #{{ loop.index }} Full Name: **{{ agent['Name'] }}** 
 {% endfor %}
-How to Act: {{ cb_s_poa_sep }} Separate {{ cb_s_poa_jt }} Jointly; If jointly, then by: {{ cb_s_poa_maj }} Majority {{ cb_s_poa_ind }} Individual {{ cb_s_poa_un }} Unanimous 
+If you listed multiple agents, how should they act: {{ cb_s_poa_sep }} Separate {{ cb_s_poa_jt }} Jointly; If jointly, then by: {{ cb_s_poa_maj }} Majority {{ cb_s_poa_ind }} Individual {{ cb_s_poa_un }} Unanimous 
 When should this take effect: Client {{ cb_c_poaw_n }} Now {{ cb_c_poaw_i }} Upon Incapacity; Spouse {{ cb_s_poaw_n }} Now {{ cb_s_poaw_i }} Upon Incapacity 
 Can Agent change Trust and make gifts: Client {{ cb_c_poag_y }} Yes {{ cb_c_poag_n }} No; Spouse {{ cb_s_poag_y }} Yes {{ cb_s_poag_n }} No
 
@@ -631,13 +631,13 @@ GOP - Guardians of the Person (who will have physical custody):
 {% for agent in gop_agents %}
 Agent #{{ loop.index }} Full Name: **{{ agent['Name'] }}** 
 {% endfor %}
-How to Act: {{ cb_gop_sep }} Separate {{ cb_gop_jt }} Jointly; If jointly, then by: {{ cb_gop_maj }} Majority {{ cb_gop_ind }} Individual {{ cb_gop_un }} Unanimous
+If you listed multiple guardians, how should they act: {{ cb_gop_sep }} Separate {{ cb_gop_jt }} Jointly; If jointly, then by: {{ cb_gop_maj }} Majority {{ cb_gop_ind }} Individual {{ cb_gop_un }} Unanimous
 
 Guardians of the Estate (who will be in charge of the money – can be the same or different from GOP):
 {% for agent in goe_agents %}
 Agent #{{ loop.index }} Full Name: **{{ agent['Name'] }}** 
 {% endfor %}
-How to Act: {{ cb_goe_sep }} Separate {{ cb_goe_jt }} Jointly; If jointly, then by: {{ cb_goe_maj }} Majority {{ cb_goe_ind }} Individual {{ cb_goe_un }} Unanimous
+If you listed multiple guardians, how should they act: {{ cb_goe_sep }} Separate {{ cb_goe_jt }} Jointly; If jointly, then by: {{ cb_goe_maj }} Majority {{ cb_goe_ind }} Individual {{ cb_goe_un }} Unanimous
 
 Trust Beneficiaries
 Trustee & Executor When You Die:
@@ -645,7 +645,7 @@ Your trustee is the person that will have to do all of the work when you die. Th
 {% for trustee in trustees %}
 Trustee #{{ loop.index }} Full Name: **{{ trustee['Name'] }}** 
 {% endfor %}
-How to Act: {{ cb_tst_sep }} Separate {{ cb_tst_jt }} Jointly; If jointly, then by: {{ cb_tst_maj }} Majority {{ cb_tst_ind }} Individual {{ cb_tst_un }} Unanimous 
+If you listed multiple trustees, how should they act: {{ cb_tst_sep }} Separate {{ cb_tst_jt }} Jointly; If jointly, then by: {{ cb_tst_maj }} Majority {{ cb_tst_ind }} Individual {{ cb_tst_un }} Unanimous 
 Should they be compensated for doing this. If so, how (% of estate, Set $, Hourly Rate, Etc.) **{{ tst_comp }}**
 
 In Trust or Outright:
