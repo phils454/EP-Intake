@@ -334,28 +334,11 @@ with t_distrib:
     st.session_state['char_cause'] = st.text_input("Charity Cause", value=st.session_state['char_cause'])
 
 with t_admin:
-    st.subheader("Contacts (Master List)")
+    st.subheader("Contacts (Please list all of the following information for everyone you have named in this form (other than yourselves)):")
     st.session_state["contacts_data"] = st.data_editor(st.session_state["contacts_data"], num_rows="dynamic", use_container_width=True, key="contacts_editor")
 
     st.subheader("General Information")
     st.session_state['ref_src'] = st.text_input("Referral Source", value=st.session_state['ref_src'])
-    
-    st.write("Documents / Services")
-    st.session_state['doc_t'] = st.checkbox("Trust", value=st.session_state['doc_t'])
-    st.session_state['doc_w'] = st.checkbox("Will(s)", value=st.session_state['doc_w'])
-    st.session_state['doc_a'] = st.checkbox("AHCD(s)", value=st.session_state['doc_a'])
-    st.session_state['doc_p'] = st.checkbox("POA(s)", value=st.session_state['doc_p'])
-    st.session_state['doc_n'] = st.checkbox("NOG", value=st.session_state['doc_n'])
-    st.session_state['doc_ub'] = st.checkbox("Update Existing Binder", value=st.session_state['doc_ub'])
-    st.session_state['doc_nb'] = st.checkbox("Client Pay for New Binder", value=st.session_state['doc_nb'])
-    st.session_state['doc_h'] = st.checkbox("Homestead Declaration", value=st.session_state['doc_h'])
-    st.session_state['doc_hd'] = st.checkbox("Home Deed", value=st.session_state['doc_hd'])
-    st.session_state['doc_nhd'] = st.checkbox("Non-Home Deeds", value=st.session_state['doc_nhd'])
-    st.session_state['doc_tax'] = st.checkbox("Tax Planning Services", value=st.session_state['doc_tax'])
-    st.session_state['doc_biz'] = st.checkbox("Business Law Services", value=st.session_state['doc_biz'])
-    st.session_state['doc_ap'] = st.checkbox("Asset Protection Planning", value=st.session_state['doc_ap'])
-    st.session_state['doc_oth'] = st.checkbox("Other", value=st.session_state['doc_oth'])
-    st.session_state['other_notes'] = st.text_area("Other Notes", value=st.session_state['other_notes'])
 
     # --- SUBMIT BUTTON ---
     st.markdown("---")
