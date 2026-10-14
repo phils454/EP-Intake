@@ -54,7 +54,7 @@ default_keys = {
     "beneficiaries_data": [{"Name": "", "US Citizen?": "", "% or $ Amount": "", "If Dies, to": "", "If Other, name": "", "What if they die?": "", "Gov Benefits?": "", "Inherit": ""}],
     "gifts_data": [{"Gift": "", "Beneficiary Name": "", "Death of (H/W/Both)": "", "Distribute": "", "If unable": "", "Else Name": ""}],
     "disinherited_data": [{"Name": "", "Relation": "", "Reason": ""}],
-    "contacts_data": [{"Name": "", "DOB": "", "Relation": "", "Related to (S/B/H/W)": "", "Address": "", "Phone": "", "Email": ""}]
+    "contacts_data": [{"Name": "", "DOB": "", "Relation": "", "Related to (Client/Spouse/Both)": "", "Address": "", "Phone": "", "Email": ""}]
 }
 
 for k, v in default_keys.items():
