@@ -670,7 +670,7 @@ Disinheritance
 If a scenario plays out where all of your listed beneficiaries die before or at the same time as you, then we need a catch all provision to make sure the assets do not go to the state. Do you prefer to keep the money in the family, or give it to charity: Client {{ cb_cd_fam }} Family {{ cb_cd_char }} Charity; Spouse {{ cb_sd_fam }} Family {{ cb_sd_char }} Charity 
 If Family, is there anyone at all in your blood line that you want to make sure never gets any of your assets? 
 {% for dis in disinherited %}
-Full Legal Name: **{{ dis['Name'] }}**; Relation to You: **{{ dis['Relation'] }}**; Reason: **{{ dis['Reason'] }}** 
+Full Legal Name: **{{ dis['Name'] }}**; Relation to You: **{{ dis['Relation'] }}**; Why do you not wish them to get any assets: **{{ dis['Reason'] }}** 
 {% endfor %}
 If Chairty, what charity or cause: **{{ char_cause }}**
 
