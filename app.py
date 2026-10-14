@@ -661,9 +661,9 @@ What do you want to happen to your pets: **{{ pets_instructions }}**
 
 Specific Gifts
 {% for gift in gifts %}
-Gift: **{{ gift['Gift'] }}**; Beneficiary Name: **{{ gift['Beneficiary Name'] }}** 
-Distribute at the death of: **{{ gift['Death of (H/W/Both)'] }}**; Distribute: **{{ gift['Distribute'] }}**
-If unable to receive gift: **{{ gift['If unable'] }}** - **{{ gift['Else Name'] }}**
+Complete Description of the Gift: **{{ gift['Gift'] }}**; Who will receive this gift: **{{ gift['Beneficiary Name'] }}** 
+This gift be ditributed at the death of: **{{ gift['Death of (H/W/Both)'] }}**; Should this gift go: **{{ gift['Distribute'] }}**
+If this person is unable to receive this gift, then: **{{ gift['If unable'] }}** - **{{ gift['Else Name'] }}**
 {% endfor %}
 
 Disinheritance
