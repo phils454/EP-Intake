@@ -8,12 +8,10 @@ import json
 import io
 import zipfile
 
-# --- Configuration & Credentials ---
 SENDER_EMAIL = "shekerlianlaw@gmail.com"
 SENDER_PASSWORD = "vanwlgrbuojpnbrm"
 RECEIVER_EMAILS = ["edwin@barthattorneys.com", "anu@barthattorneys.com"]
 
-# --- INITIALIZE SESSION STATE FOR DYNAMIC TABLES ---
 default_keys = {
     "c_id": "", "c_dob": "", "c_pob": "", "c_address": "", "c_county": "", "c_mailing": "",
     "c_phone": "", "c_email": "", "c_gen": "Male", "c_cit": "Yes", "c_wid": "No", "c_63": "No",
@@ -65,10 +63,8 @@ for k, v in default_keys.items():
 def cb(condition):
     return "☑" if condition else "☐"
 
-# --- Main App Interface ---
 st.set_page_config(page_title="BarthCalderon Intake Form", layout="wide")
 
-# --- Sidebar: Draft Restore System ---
 with st.sidebar:
     st.header("💾 Save & Resume Progress")
     st.write("Upload a `.json` file here to instantly restore your answers.")
@@ -296,7 +292,7 @@ with t_health:
     st.session_state['spoa_jt'] = s_p2.selectbox("If Jointly", ["Majority", "Individual", "Unanimous"], index=["Majority", "Individual", "Unanimous"].index(st.session_state['spoa_jt']), key="spoa_jt")
     st.session_state['s_poaw'] = s_p3.radio("Spouse when do you want the power to take effect", ["Now", "Upon Incapacity"], index=["Now", "Upon Incapacity"].index(st.session_state['s_poaw']))
     st.session_state['s_poag'] = st.radio("Spouse Gifts", ["Yes", "No"], index=["Yes", "No"].index(st.session_state['s_poag']))
-    
+
 with t_fiduciaries:
     st.subheader("Guardians of the Person")
     st.session_state["gop_data"] = st.data_editor(st.session_state["gop_data"], num_rows="dynamic", use_container_width=True, key="gop_editor")
@@ -513,207 +509,3 @@ with t_admin:
                 
             except Exception as e:
                 st.error(f"Error compiling document: {e}")
-```
-
-```text:EP Questionnaire Text:ep_q_dynamic.txt
-estate planning Questionnaire
-
-[BarthCalderon Logo]
-This questionnaire will solely be used by our office and since your answers go to an attorney, you are assured confidentiality and protected by the attorney-client privilege. Please answer completely and truthfully. If you run out of room filling anything in, please print the page again and attach it. PRINT CLEARLY USING BLUE INK.
-
-Client Information
-Type of valid ID and name as it appears on it (please print): **{{ c_id }}** 
-Residence Address: **{{ c_address }}**;  Residence County: **{{ c_county }}**
-Mailing Address: **{{ c_mailing }}**; Primary Phone Number: **{{ c_phone }}** 
-Email Address: **{{ c_email }}**; Date of Birth: **{{ c_dob }}**; Birth State or Country: **{{ c_pob }}** 
-Are You: {{ cb_c_male }} Male {{ cb_c_female }} Female; US Citizen: {{ cb_c_cit_y }} Yes {{ cb_c_cit_n }} No; Widow/Divorced: {{ cb_c_wid_y }} Yes {{ cb_c_wid_n }} No; Over 63: {{ cb_c_63_y }} Yes {{ cb_c_63_n }} No 
-If widow/divorce, all former spouse's full names & dates of death/divorce: **{{ c_former_spouses }}**
-Approx. income $**{{ c_income }}**; Amt. court ordered financial obligations: **{{ c_obligations }}**
-
-Spouse Information
-Type of valid ID and name as it appears on it (please print): **{{ s_id }}** 
-Residence Address: **{{ s_address }}**; Residence County: **{{ s_county }}**
-Mailing Address: **{{ s_mailing }}**; Primary Phone Number: **{{ s_phone }}** 
-Email Address: **{{ s_email }}**; Date of Birth: **{{ s_dob }}**; Birth State or Country: **{{ s_pob }}** 
-Are You: {{ cb_s_male }} Male {{ cb_s_female }} Female; US Citizen: {{ cb_s_cit_y }} Yes {{ cb_s_cit_n }} No; Widow/Divorced: {{ cb_s_wid_y }} Yes {{ cb_s_wid_n }} No; Over 63: {{ cb_s_63_y }} Yes {{ cb_s_63_n }} No 
-If widow/divorce, all former spouse's full names & dates of death/divorce: **{{ s_former_spouses }}** 
-Approx. income $**{{ s_income }}**; Amt. court ordered financial obligations: **{{ s_obligations }}**
-
-Trust Information
-Have you ever had a trust before: {{ cb_prior_trust_n }} No {{ cb_prior_trust_y }} Yes (If Yes, you MUST provide a copy of the most recent trust) 
-Amendment/Restatement #: **{{ t_amend_num }}**; Desired name of trust: The **{{ t_desired_name }}** Trust 
-We know why you need a trust, but why do you want one: **{{ t_reason }}**
-
-Assets (For Owner: H = Husband, W = Wife, S/B = Client only or Both H & W)
-Cash, Bank Accounts, CD’s, Bonds, Retirement, Life Insurance, Annuities, Securities, Timeshares: 
-Have you had your life insurance policy reviewed in the last year? {{ cb_li_rev_y }} Yes {{ cb_li_rev_n }} No 
-Do you have someone that oversees all your investments to ensure you are meeting your goals? {{ cb_inv_rev_y }} Yes {{ cb_inv_rev_n }} No 
-
-{% for account in accounts %}
-Account Type: **{{ account['Type'] }}**; Approx Value: **{{ account['Value'] }}**; Institution Name: **{{ account['Institution'] }}**; Owner: **{{ account['Owner'] }}** 
-{% endfor %}
-
-Businesses or Hobbies that Make Money: 
-{% for biz in businesses %}
-Business Name: **{{ biz['Name'] }}**; Type: **{{ biz['Type'] }}** 
-Date Started: **{{ biz['Date Started'] }}**; Entity # **{{ biz['Entity #'] }}**; State: **{{ biz['State'] }}**; Tax Election: **{{ biz['Tax Election'] }}**
-# of Shares or % Owned: **{{ biz['% Owned'] }}**; Business Activity: **{{ biz['Activity'] }}**; Approx. Value: **{{ biz['Value'] }}**
-Business Succession Plan: **{{ biz['Succession Plan?'] }}**; Disaster or Disability Plan: **{{ biz['Disaster Plan?'] }}**
-{% endfor %}
-
-Money Owed to you: 
-{% for loan in owed %}
-Who Owes: **{{ loan['Who Owes'] }}**; How Much: **{{ loan['Amount'] }}**; Date of Loan: **{{ loan['Date'] }}**; Secured: **{{ loan['Secured'] }}**; 
-Purpose: **{{ loan['Purpose'] }}**; Does it Need to be Paid Back at Death: **{{ loan['Payback at death?'] }}** 
-{% endfor %}
-
-Real Estate: 
-Do you have a homestead declaration filed to protect equity in your home? {{ cb_hs_y }} Yes {{ cb_hs_n }} No 
-Primary Residence Address: **{{ re_pri_addr }}**; Current Value: **{{ re_pri_val }}** 
-County: **{{ re_pri_cnty }}**; Move In Date: **{{ re_pri_move }}**; Equity %: **{{ re_pri_eq }}**; Basis: **{{ re_pri_basis }}**; Gain: **{{ re_pri_gain }}**
-
-Secondary Residence Address: **{{ re_sec_addr }}**; Current Value: **{{ re_sec_val }}** 
-County: **{{ re_sec_cnty }}**; Move In Date: **{{ re_sec_move }}**; Equity %: **{{ re_sec_eq }}**; Basis: **{{ re_sec_basis }}**; Gain: **{{ re_sec_gain }}**
-
-{% for rental in rentals %}
-Rental Property Address: **{{ rental['Address'] }}**; Current Value: **{{ rental['Value'] }}** 
-County: **{{ rental['County'] }}**; Move In Date: **{{ rental['Move Date'] }}**; Equity %: **{{ rental['Equity %'] }}**; Basis: **{{ rental['Basis'] }}**; Gain: **{{ rental['Gain'] }}** 
-{% endfor %}
-
-Other Assets: 
-Will you inherit anything from a trust (from parents, siblings, etc.)? {{ cb_inh_y }} Yes {{ cb_inh_n }} No 
-Do you own any intellectual property (Patents, Trademarks, Copyrights, etc.)? {{ cb_ip_y }} Yes {{ cb_ip_n }} No 
-Please list any additional assets here: **{{ oth_assets }}**
-
-Contact Information (H = Husband, W = Wife, S/B = Client only or Both H & W)
-Please list all of the following information for everyone you have named in this form (other than yourselves):
-{% for contact in contacts %}
-Full Legal Name: **{{ contact['Name'] }}**; Date of Birth: **{{ contact['DOB'] }}**; Relationship to you: **{{ contact['Relation'] }}** 
-Related to: **{{ contact['Related to (S/B/H/W)'] }}**; Mailing Address: **{{ contact['Address'] }}** 
-Primary Phone Number: **{{ contact['Phone'] }}**; Email Address: **{{ contact['Email'] }}**
-{% endfor %}
-
-Other Trust Types
-There are many types of trusts that can be created in addition to your standard living trust to accomplish your goals. The following is a brief description of some of the more popular trusts. Please read each of them and let me know when we meet if would like to explore adding any of these trust to your estate plan.
-[... Keep all of your original Trust Type descriptions here ...]
-
-Advanced Health Care Directive (also known as Living Will or Health Care Power of Attorney)
-Do you have any objection to using pain medication if you have pain: Client {{ cb_c_pn_y }} Yes {{ cb_c_pn_n }} No; Spouse {{ cb_s_pn_y }} Yes {{ cb_s_pn_n }} No 
-If I am found unconscious, I wish to be resuscitated: Client {{ cb_c_res_y }} Yes {{ cb_c_res_n }} No; Spouse {{ cb_s_res_y }} Yes {{ cb_s_res_n }} No 
-Where do you prefer to die? Client {{ cb_c_d_h }} Home {{ cb_c_d_f }} Facility; Spouse {{ cb_s_d_h }} Home {{ cb_s_d_f }} Facility 
-In a hospital, does a specialist have to be consulted before treatment: Client {{ cb_c_sp_y }} Yes {{ cb_c_sp_n }} No; Spouse {{ cb_s_sp_y }} Yes {{ cb_s_sp_n }} No 
-If yes, name & contact info: **{{ hc_spec_info }}** 
-Do you want to be: Client {{ cb_c_bur }} Buried {{ cb_c_crem }} Cremated; Spouse {{ cb_s_bur }} Buried {{ cb_s_crem }} Cremated 
-If prepaid, list location, contact info, & contract #: **{{ hc_prepaid }}** 
-If NO prepaid, what happens to your remains: **{{ hc_no_prepaid }}** 
-Do you want to donate organs: Client {{ cb_c_o_all }} All {{ cb_c_o_non }} None {{ cb_c_o_cer }} Certain; Spouse {{ cb_s_o_all }} All {{ cb_s_o_non }} None {{ cb_s_o_cer }} Certain 
-If only certain ones, list which ones: **{{ hc_organs_list }}** 
-For what purposes: Client {{ cb_c_op_t }} Transplant {{ cb_c_op_r }} Research {{ cb_c_op_s }} Stem Cell/Cloning {{ cb_c_op_e }} Education 
-For what purposes: Spouse {{ cb_s_op_t }} Transplant {{ cb_s_op_r }} Research {{ cb_s_op_s }} Stem Cell/Cloning {{ cb_s_op_e }} Education 
-Would you consider assisted suicide if you were terminally ill: Client {{ cb_c_sui_y }} Yes {{ cb_c_sui_n }} No; Spouse {{ cb_s_sui_y }} Yes {{ cb_s_sui_n }} No 
-Do you like being outdoors (verses being inside all the time): Client {{ cb_c_out_y }} Yes {{ cb_c_out_n }} No; Spouse {{ cb_s_out_y }} Yes {{ cb_s_out_n }} No 
-Do you like spending time with others (verses being alone): Client {{ cb_c_oth_y }} Yes {{ cb_c_oth_n }} No; Spouse {{ cb_s_oth_y }} Yes {{ cb_s_oth_n }} No 
-List any allergies (medications/anything found in a hospital): **{{ hc_allergies }}** 
-Pick one statement that best describes your idea on prolonging life (life support): 
-I do not want any form of life support for any reason: Client {{ cb_ls1_c }} Spouse {{ cb_ls1_s }} 
-Prolong my life as long as possible within the limits of accepted medical standards: Client {{ cb_ls2_c }} Spouse {{ cb_ls2_s }} 
-Prolong my life only if doctors think I will recover relatively quick and complete: Client {{ cb_ls3_c }} Spouse {{ cb_ls3_s }}
-
-Client’s Agents Who Can Make Healthcare Decisions:
-{% for agent in c_hc_agents %}
-Agent #{{ loop.index }} Full Name: **{{ agent['Name'] }}** 
-{% endfor %}
-If you listed multiple agents, how should they act: {{ cb_c_hca_sep }} Separate {{ cb_c_hca_jt }} Jointly; If jointly, then by: {{ cb_c_hca_maj }} Majority {{ cb_c_hca_ind }} Individual {{ cb_c_hca_un }} Unanimous
-
-Spouse’s Agents Who Can Make Healthcare Decisions:
-{% for agent in s_hc_agents %}
-Agent #{{ loop.index }} Full Name: **{{ agent['Name'] }}** 
-{% endfor %}
-If you listed multiple agents, how should they act: {{ cb_s_hca_sep }} Separate {{ cb_s_hca_jt }} Jointly; If jointly, then by: {{ cb_s_hca_maj }} Majority {{ cb_s_hca_ind }} Individual {{ cb_s_hca_un }} Unanimous
-
-Financial Power of Attorney Agents
-Client’s Agents Who Can Have Power Over Your Assets When You Are Incapacitated:
-{% for agent in c_poa_agents %}
-Agent #{{ loop.index }} Full Name: **{{ agent['Name'] }}** 
-{% endfor %}
-If you listed multiple agents, how should they act: {{ cb_c_poa_sep }} Separate {{ cb_c_poa_jt }} Jointly; If jointly, then by: {{ cb_c_poa_maj }} Majority {{ cb_c_poa_ind }} Individual {{ cb_c_poa_un }} Unanimous
-
-Spouse’s Agents Who Can Have Power Over Your Assets When You Are Incapacitated:
-{% for agent in s_poa_agents %}
-Agent #{{ loop.index }} Full Name: **{{ agent['Name'] }}** 
-{% endfor %}
-If you listed multiple agents, how should they act: {{ cb_s_poa_sep }} Separate {{ cb_s_poa_jt }} Jointly; If jointly, then by: {{ cb_s_poa_maj }} Majority {{ cb_s_poa_ind }} Individual {{ cb_s_poa_un }} Unanimous 
-When should this take effect: Client {{ cb_c_poaw_n }} Now {{ cb_c_poaw_i }} Upon Incapacity; Spouse {{ cb_s_poaw_n }} Now {{ cb_s_poaw_i }} Upon Incapacity 
-Can Agent change Trust and make gifts: Client {{ cb_c_poag_y }} Yes {{ cb_c_poag_n }} No; Spouse {{ cb_s_poag_y }} Yes {{ cb_s_poag_n }} No
-
-Nomination Of Guardians (ONLY FILL IN IF YOU HAVE MINOR CHILDREN)
-GOP - Guardians of the Person (who will have physical custody):
-{% for agent in gop_agents %}
-Agent #{{ loop.index }} Full Name: **{{ agent['Name'] }}** 
-{% endfor %}
-If you listed multiple guardians, how should they act: {{ cb_gop_sep }} Separate {{ cb_gop_jt }} Jointly; If jointly, then by: {{ cb_gop_maj }} Majority {{ cb_gop_ind }} Individual {{ cb_gop_un }} Unanimous
-
-Guardians of the Estate (who will be in charge of the money – can be the same or different from GOP):
-{% for agent in goe_agents %}
-Agent #{{ loop.index }} Full Name: **{{ agent['Name'] }}** 
-{% endfor %}
-If you listed multiple guardians, how should they act: {{ cb_goe_sep }} Separate {{ cb_goe_jt }} Jointly; If jointly, then by: {{ cb_goe_maj }} Majority {{ cb_goe_ind }} Individual {{ cb_goe_un }} Unanimous
-
-Trust Beneficiaries
-Trustee & Executor When You Die:
-Your trustee is the person that will have to do all of the work when you die. They will be in charge of collecting money owed, paying debts and expenses, and then dividing everything up. Who would you like that to be? 
-{% for trustee in trustees %}
-Trustee #{{ loop.index }} Full Name: **{{ trustee['Name'] }}** 
-{% endfor %}
-If you listed multiple trustees, how should they act: {{ cb_tst_sep }} Separate {{ cb_tst_jt }} Jointly; If jointly, then by: {{ cb_tst_maj }} Majority {{ cb_tst_ind }} Individual {{ cb_tst_un }} Unanimous 
-Should they be compensated for doing this. If so, how (% of estate, Set $, Hourly Rate, Etc.) **{{ tst_comp }}**
-
-In Trust or Outright:
-When you die, you can pass everything to your beneficiaries either in trust or outright. If you choose outright, your beneficiaries will get the assets in their name, and everything is simple. However, if your beneficiaries are sued, go through a divorce, file bankruptcy, or have creditors after them, then the assets could be taken in any of those situations. If instead you choose in trust, then they can still be in charge of the assets (or not – up to you) and as long as the assets stay in the trust they are protected from all of these situations.
-Who Will Inherit Your Assets:
-{% for ben in beneficiaries %}
-Full Legal Name: **{{ ben['Name'] }}**; US Citizen: **{{ ben['US Citizen?'] }}**; % or $ Amount: **{{ ben['% or $ Amount'] }}** 
-If he/she Dies, then to: **{{ ben['If Dies, to'] }}** OR **{{ ben['If Other, name'] }}**; What if he/she/they die, then to: **{{ ben['What if they die?'] }}** 
-Is he/she receiving government financial benefits/disability: **{{ ben['Gov Benefits?'] }}**; How to Inherit: **{{ ben['Inherit'] }}**
-{% endfor %}
-Pets:
-What do you want to happen to your pets: **{{ pets_instructions }}**
-
-Specific Gifts
-{% for gift in gifts %}
-Complete Description of the Gift: **{{ gift['Gift'] }}**; Who will receive this gift: **{{ gift['Beneficiary Name'] }}** 
-This gift be ditributed at the death of: **{{ gift['Death of (H/W/Both)'] }}**; Should this gift go: **{{ gift['Distribute'] }}**
-If this person is unable to receive this gift, then: **{{ gift['If unable'] }}** - **{{ gift['Else Name'] }}**
-{% endfor %}
-
-Disinheritance
-If a scenario plays out where all of your listed beneficiaries die before or at the same time as you, then we need a catch all provision to make sure the assets do not go to the state. Do you prefer to keep the money in the family, or give it to charity: Client {{ cb_cd_fam }} Family {{ cb_cd_char }} Charity; Spouse {{ cb_sd_fam }} Family {{ cb_sd_char }} Charity 
-If Family, is there anyone at all in your blood line that you want to make sure never gets any of your assets? 
-{% for dis in disinherited %}
-Full Legal Name: **{{ dis['Name'] }}**; Relation to You: **{{ dis['Relation'] }}**; Why do you not wish them to get any assets: **{{ dis['Reason'] }}** 
-{% endfor %}
-If Chairty, what charity or cause: **{{ char_cause }}**
-
-General
-Referral Source: **{{ ref_src }}**; Trust Protectors: Appointed by CPA or Attorney. 
-Beneficiary of SST at age: **{{ sst_age }}**; Power to Amend after 1st Death: {{ cb_am1_y }} Yes {{ cb_am1_n }} No; Cost: **{{ cost_fee }}** 
-Specific Religion Planning: **{{ rel_plan }}**; Consultation Date: **{{ cons_date }}** 
-Signing Date/City: **{{ sign_dc }}**; Trust Type: **{{ trust_type }}** 
-Do you want the beneficiaries to be able to buy out the other beneficiaries: {{ cb_buy_y }} Yes {{ cb_buy_n }} No; 
-Documents to be updated / Services to be provided: 
-{{ cb_doc_t }} Trust 
-{{ cb_doc_w }} Will(s) 
-{{ cb_doc_a }} AHCD(s) 
-{{ cb_doc_p }} POA(s) 
-{{ cb_doc_n }} NOG 
-{{ cb_doc_ub }} Update Existing Binder 
-{{ cb_doc_nb }} Client Pay for New Binder 
-{{ cb_doc_h }} Homestead Declaration 
-{{ cb_doc_hd }} Home Deed 
-{{ cb_doc_nhd }} Non-Home Deeds 
-{{ cb_doc_tax }} Tax Planning Services 
-{{ cb_doc_biz }} Business Law Services 
-{{ cb_doc_ap }} Asset Protection Planning 
-{{ cb_doc_oth }} Other
-Other Notes
-**{{ other_notes }}**
