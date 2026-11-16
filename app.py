@@ -9,7 +9,7 @@ import io
 
 # --- Configuration & Credentials ---
 SENDER_EMAIL = "shekerlianlaw@gmail.com"
-Sender_password = st.secrets["email_password"]
+Sender_password = st.secrets["sender_password"]
 RECEIVER_EMAILS = ["edwin@barthattorneys.com", "anu@barthattorneys.com"]
 
 # --- INITIALIZE SESSION STATE FOR DYNAMIC TABLES ---
