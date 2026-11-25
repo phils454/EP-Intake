@@ -1,0 +1,66 @@
+name: Keep Streamlit Apps Awake
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Runs every 6 hours (well inside Streamlit's 12-hour limit)
+  workflow_dispatch:      # Lets you test it manually anytime
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Playwright & Browser Dependencies
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install --with-deps chromium
+
+      - name: Visit and Wake Apps
+        run: |
+          node << 'EOF'
+          const { chromium } = require('playwright');
+
+          const APPS = [
+            'https://phil-shekerlians-ta-questionnaire.streamlit.app',
+            'https://phil-shekerlians-ep-questionnaire.streamlit.app',
+          ];
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const context = await browser.newContext({
+              userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
+            });
+            const page = await context.newPage();
+
+            for (const url of APPS) {
+              try {
+                console.log(`\nChecking: ${url}`);
+                await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+                await page.waitForTimeout(8000);
+
+                // Look for Streamlit's wake-up button if the app fell asleep
+                const wakeButton = page.locator('button:has-text("Yes, get this app back up")');
+                if (await wakeButton.count() > 0 && await wakeButton.first().isVisible()) {
+                  console.log('App was asleep! Clicking wake-up button...');
+                  await wakeButton.first().click();
+                  // Wait 60 seconds to let Streamlit cold-boot the app
+                  await page.waitForTimeout(60000);
+                  console.log('Wake-up complete.');
+                } else {
+                  console.log('App is awake! Keeping session open briefly to reset the 12-hour timer...');
+                  await page.waitForTimeout(15000);
+                }
+              } catch (err) {
+                console.error(`Error visiting ${url}:`, err.message);
+              }
+            }
+
+            await browser.close();
+            console.log('\nAll apps checked!');
+          })();
+          EOF
